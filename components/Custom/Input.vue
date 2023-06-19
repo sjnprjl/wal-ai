@@ -3,9 +3,7 @@
     :type="props.type"
     :placeholder="props.placeholder"
     class="form-control"
-    :style="{
-      marginBottom: props.marginBottom,
-    }"
+    :style="marginBottomStyle"
   />
 </template>
 
@@ -15,6 +13,10 @@ const props = defineProps({
   placeholder: String,
   marginBottom: String,
 });
+
+const marginBottomStyle = {
+  marginBottom: props.marginBottom,
+};
 </script>
 
 <style scoped>
@@ -27,5 +29,12 @@ input {
   font-size: 1.6rem;
   font-weight: 400;
   text-indent: 2rem;
+}
+
+@media only screen and (max-width: 440px) {
+  input {
+    max-width: 363px;
+    width: 100%;
+  }
 }
 </style>

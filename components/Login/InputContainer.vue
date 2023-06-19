@@ -1,6 +1,6 @@
 <template>
   <div class="login-container d-flex flex-column align-items-center">
-    <p class="para">Login to Chat with WAL-AI</p>
+    <p class="para">Desktop to Chat with WAL-AI</p>
     <CustomInput
       type="text"
       placeholder="Email Address"
@@ -32,7 +32,6 @@ const marginBottom = "17px";
 .para {
   width: 347px;
   height: 40px;
-  /* top: 368px; */
   font-family: "Inter";
   font-style: normal;
   font-weight: 400;
@@ -47,7 +46,6 @@ const marginBottom = "17px";
   font-size: 1.4rem;
   line-height: 1.7rem;
   color: #afafaf;
-  margin-bottom: 32.6rem;
   width: 36.7rem;
 }
 </style>
