@@ -1,17 +1,19 @@
 <template>
   <div class="login-container d-flex flex-column align-items-center">
-    <p class="para">Desktop to Chat with WAL-AI</p>
+    <p class="para">Login to Chat with WAL-AI</p>
     <CustomInput
       type="text"
-      placeholder="Email Address"
+      placeholder="Phone Number"
       :marginBottom="marginBottom"
+      v-model="email"
     />
     <CustomInput
-      type="text"
-      placeholder="First Name"
+      type="password"
+      placeholder="Password"
       :marginBottom="marginBottom"
+      v-model="password"
     />
-    <CustomButton>Login</CustomButton>
+    <CustomButton @login="login">Login</CustomButton>
     <p class="para register-para">
       Only registered user can login to WAL-AI. Please <br />contact the
       administrator to get your access.
@@ -21,6 +23,33 @@
 
 <script setup>
 const marginBottom = "17px";
+
+const email = ref("");
+const password = ref("");
+
+const sendRequest = async (email, password) => {
+  const data = {
+    phoneNumber: email.toString(),
+    password: password.toString(),
+  };
+
+  const response = await fetch("https://dummyjson.com/auth/login", {
+    method: "POST",
+    body: JSON.stringify(data),
+    headers: {
+      "content-type": "application/json",
+    },
+  });
+
+  const result = await response.json();
+  console.log(result);
+  localStorage.setItem("token_ramailo", JSON.stringify(result));
+  navigateTo("/", { replace: true });
+};
+
+const login = () => {
+  sendRequest(email.value, password.value);
+};
 </script>
 
 <style scoped>

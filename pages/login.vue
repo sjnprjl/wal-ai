@@ -28,12 +28,27 @@
 </template>
 
 <script setup>
+onBeforeMount(() => {
+  let token = localStorage.getItem("token_ramailo");
+  if (token) {
+    token = JSON.parse(token);
+  }
+  if (token) {
+    return navigateTo("/", { replace: true });
+  }
+});
 const customContainerStyle = {};
 const messageBoxAppear = ref(true);
 
 const messageCircleClick = () => {
   messageBoxAppear.value = !messageBoxAppear.value;
 };
+
+const inputStore = (email, password) => {
+  console.log(email, password);
+};
+
+provide("clickListener", inputStore);
 </script>
 
 <style scoped>
@@ -62,6 +77,8 @@ const messageCircleClick = () => {
   .mobile-bg {
     background-color: #2f2a2a;
     position: relative;
+    max-height: 100vh;
+    overflow: hidden;
   }
 
   .mobile-message-circle {

@@ -1,6 +1,14 @@
 <template>
-  <button type="button" class="btn"><slot /></button>
+  <button type="button" class="btn" @click="clicked"><slot /></button>
 </template>
+
+<script setup>
+const emit = defineEmits("login");
+
+const clicked = () => {
+  emit("login");
+};
+</script>
 
 <style scoped>
 button {

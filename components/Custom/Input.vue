@@ -3,7 +3,10 @@
     :type="props.type"
     :placeholder="props.placeholder"
     class="form-control"
-    :style="marginBottomStyle"
+    :style="[marginBottomStyle, props.customStyle]"
+    :value="modelValue"
+    @input="updateValue"
+    :disabled="props.disabled"
   />
 </template>
 
@@ -12,11 +15,21 @@ const props = defineProps({
   type: String,
   placeholder: String,
   marginBottom: String,
+  customStyle: Object,
+  modelValue: String,
+  disabled: Boolean,
 });
 
+const emit = defineEmits(["update:modelValue"]);
+
+const updateValue = (event) => {
+  emit("update:modelValue", event.target.value);
+};
 const marginBottomStyle = {
   marginBottom: props.marginBottom,
 };
+
+const store = ref("");
 </script>
 
 <style scoped>
