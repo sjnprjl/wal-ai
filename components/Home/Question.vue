@@ -5,7 +5,7 @@
       :customStyle="customStyle"
       name="D"
     />
-    <p>{{ props.question }}</p>
+    <p>{{ props.question.content }}</p>
   </div>
 </template>
 

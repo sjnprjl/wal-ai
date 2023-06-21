@@ -29,6 +29,8 @@
 </template>
 
 <script setup>
+import { api } from "~/composables/api";
+
 const question = ref("");
 const disabled = ref(false);
 
@@ -36,16 +38,40 @@ const questionInput = useStoreQuestion();
 const answerInput = useStoreAnswer();
 
 const sendQuestion = () => {
-  if (question.value !== "") {
+  const safeText = question.value.trim();
+  const chatBotId = localStorage.getItem("bot_id");
+  const userId = localStorage.getItem("user_id");
+  const url = `/chat/${userId}/chatbots/${chatBotId}/send-message`;
+
+  if (safeText !== "") {
     disabled.value = true;
-    questionInput.value.push(question.value);
+    questionInput.value.push({
+      id: Date.now(),
+      content: safeText,
+      role: "user",
+    });
     question.value = "";
-    answerInput.value.push(`Generating Answer...`);
-    setTimeout(() => {
-      answerInput.value.pop();
-      answerInput.value.push(`This is my latest answer ${Math.random()}`);
-      disabled.value = false;
-    }, 4000);
+    answerInput.value.push({
+      content: `wait a bit.`,
+      id: Date.now(),
+      role: "assistant",
+    });
+    api
+      .post(url, { content: safeText, role: "user" })
+      .then((data) => {
+        answerInput.value.pop();
+        console.log(data);
+        answerInput.value.push(data.data);
+        disabled.value = false;
+      })
+      .catch((err) => {
+        answerInput.value.pop();
+        answerInput.value.push({
+          id: Date.now(),
+          content: "Something went wrong.",
+          role: "assistant",
+        });
+      });
   }
 };
 
