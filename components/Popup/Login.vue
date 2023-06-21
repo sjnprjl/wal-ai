@@ -1,6 +1,6 @@
 <template>
   <div class="login-container d-flex flex-column align-items-center">
-    <h1 class="main-heading text-white">
+    <h1 class="main-heading text-white text-center">
       Heading Placeholder to be<br />
       used for more description <br />about the CHAT bot.
     </h1>
@@ -29,7 +29,8 @@ const marginBottom = "17px";
 
 <style scoped>
 .login-container {
-  width: 440px;
+  width: 44rem;
+  height: 66.6rem;
   background-color: #2f2a2a;
 }
 

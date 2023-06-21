@@ -15,12 +15,12 @@
         @click="sendQuestion"
       />
     </div>
-    <p class="helper">
+    <p class="helper" :style="style">
       Sample text area with a <NuxtLink :style="linkUnderline">link</NuxtLink>,
       which can be used to redirect the user to helpful section or other content
       of the chat bot.
     </p>
-    <p class="copyright">
+    <p class="copyright" v-if="props.copyrightVisible">
       © 2023 WAL-AI Pty Ltd.
       <NuxtLink :style="linkUnderline">Terms and Conditions</NuxtLink> &
       <NuxtLink :style="linkUnderline">Privacy Policy.</NuxtLink>
@@ -29,6 +29,18 @@
 </template>
 
 <script setup>
+const props = defineProps({
+  copyrightVisible: {
+    type: Boolean,
+    default: true,
+  },
+  color: String,
+});
+
+const style = {
+  color: props.color ? props.color : "#000",
+};
+
 const question = ref("");
 const disabled = ref(false);
 
@@ -41,11 +53,11 @@ const sendQuestion = () => {
     questionInput.value.push(question.value);
     question.value = "";
     answerInput.value.push(`Generating Answer...`);
-    setTimeout(() => {
-      answerInput.value.pop();
-      answerInput.value.push(`This is my latest answer ${Math.random()}`);
-      disabled.value = false;
-    }, 4000);
+    // setTimeout(() => {
+    // }, 4000);
+    answerInput.value.pop();
+    answerInput.value.push(`This is my latest answer ${Math.random()}`);
+    disabled.value = false;
   }
 };
 

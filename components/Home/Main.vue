@@ -1,6 +1,6 @@
 <template>
   <div class="main-container">
-    <div class="scroll">
+    <!-- <div class="scroll">
       <div
         class="question-answer-container"
         v-for="(question, index) in questions"
@@ -11,7 +11,8 @@
           <HomeAnswer :answer="answers[index]" />
         </div>
       </div>
-    </div>
+    </div> -->
+    <HomeMessages />
     <div class="question-input-container">
       <HomeQuestionInput />
     </div>
