@@ -13,6 +13,28 @@
 
 <script setup>
 const showHide = ref(false);
+const questions = useStoreQuestion();
+const answers = useStoreAnswer();
+
+async function getChatHistory(userId, botId) {
+  const { data } = await api.get(`chat/${userId}/${botId}/chatHistory`);
+  return data.messages;
+}
+
+onBeforeMount(() => {
+  getChatHistory(
+    localStorage.getItem("user_id"),
+    localStorage.getItem("bot_id")
+  ).then((messages) => {
+    messages.forEach((message) => {
+      if (message.role === "user") {
+        questions.value.push(message);
+      } else if (message.role === "assistant") {
+        answers.value.push(message);
+      }
+    });
+  });
+});
 
 const chatHandler = () => {
   showHide.value = !showHide.value;

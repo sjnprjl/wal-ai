@@ -2,7 +2,7 @@
   <div class="answer">
     <CustomLetter :customStyle="customStyle" name="W" />
     <p>
-      {{ props.answer }}
+      {{ props.answer.content }}
     </p>
     <img src="/images/copy.png" alt="clipboard" @click="copyText" />
   </div>

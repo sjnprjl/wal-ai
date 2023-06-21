@@ -22,6 +22,8 @@
 </template>
 
 <script setup>
+import { api } from "~/composables/api";
+
 const marginBottom = "17px";
 
 const email = ref("");
@@ -33,16 +35,9 @@ const sendRequest = async (email, password) => {
     password: password.toString(),
   };
 
-  const response = await fetch("https://dummyjson.com/auth/login", {
-    method: "POST",
-    body: JSON.stringify(data),
-    headers: {
-      "content-type": "application/json",
-    },
-  });
+  const response = await api.post("auth/signin", data);
 
-  const result = await response.json();
-  console.log(result);
+  const result = response.data;
   localStorage.setItem("token_ramailo", JSON.stringify(result));
   navigateTo("/", { replace: true });
 };

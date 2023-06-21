@@ -7,15 +7,17 @@
     <p class="para login-para">Login to Chat with WAL-AI</p>
     <CustomInput
       type="text"
-      placeholder="Email Address"
+      placeholder="Phone Number"
       :marginBottom="marginBottom"
+      v-model="phone"
     />
     <CustomInput
-      type="text"
-      placeholder="First Name"
+      type="password"
+      placeholder="Password"
       :marginBottom="marginBottom"
+      v-model="password"
     />
-    <CustomButton>Login</CustomButton>
+    <CustomButton @login="login">Login</CustomButton>
     <p class="para register-para">
       Only registered user can login to WAL-AI. Please <br />contact the
       administrator to get your access.
@@ -25,6 +27,29 @@
 
 <script setup>
 const marginBottom = "17px";
+
+const phone = ref("");
+const password = ref("");
+
+const sendRequest = async (phone, password) => {
+  const data = {
+    phoneNumber: phone.toString(),
+    password: password.toString(),
+  };
+
+  try {
+    const response = await api.post("auth/signin", data);
+    const result = response.data;
+    localStorage.setItem("token_ramailo", JSON.stringify(result));
+    navigateTo("/chat-popup", { replace: true });
+  } catch (err) {
+    console.log("login failed", err);
+  }
+};
+
+const login = () => {
+  sendRequest(phone.value, password.value);
+};
 </script>
 
 <style scoped>
