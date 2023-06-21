@@ -15,12 +15,12 @@
         @click="sendQuestion"
       />
     </div>
-    <p class="helper">
+    <p class="helper" :style="style">
       Sample text area with a <NuxtLink :style="linkUnderline">link</NuxtLink>,
       which can be used to redirect the user to helpful section or other content
       of the chat bot.
     </p>
-    <p class="copyright">
+    <p class="copyright" v-if="props.copyrightVisible">
       © 2023 WAL-AI Pty Ltd.
       <NuxtLink :style="linkUnderline">Terms and Conditions</NuxtLink> &
       <NuxtLink :style="linkUnderline">Privacy Policy.</NuxtLink>
@@ -30,6 +30,17 @@
 
 <script setup>
 import { api } from "~/composables/api";
+const props = defineProps({
+  copyrightVisible: {
+    type: Boolean,
+    default: true,
+  },
+  color: String,
+});
+
+const style = {
+  color: props.color ? props.color : "#000",
+};
 
 const question = ref("");
 const disabled = ref(false);

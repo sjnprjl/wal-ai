@@ -1,6 +1,7 @@
 <template>
   <div class="custom-container container-fluid">
-    <PopupLogin class="login" v-if="showHide" />
+    <!-- <PopupLogin class="login" v-if="showHide" /> -->
+    <PopupChat class="chat" />
     <img
       src="/images/message-circle.png"
       alt="message-circle"
@@ -32,7 +33,7 @@ const chatHandler = () => {
   cursor: pointer;
 }
 
-.login {
+.chat {
   position: absolute;
   bottom: 40px;
   right: 40px;
