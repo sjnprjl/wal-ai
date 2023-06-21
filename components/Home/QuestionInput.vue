@@ -62,7 +62,6 @@ const sendQuestion = () => {
         answerInput.value.pop();
         console.log(data);
         answerInput.value.push(data.data);
-        disabled.value = false;
       })
       .catch((err) => {
         answerInput.value.pop();
@@ -71,6 +70,9 @@ const sendQuestion = () => {
           content: "Something went wrong.",
           role: "assistant",
         });
+      })
+      .finally(() => {
+        disabled.value = false;
       });
   }
 };
