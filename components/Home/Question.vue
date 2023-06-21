@@ -14,6 +14,8 @@ const props = defineProps({
   question: "String",
 });
 
+const style = inject("customStyle");
+
 const letterBGColor = "#CFCDCD";
 
 const customStyle = {

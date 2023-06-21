@@ -32,6 +32,8 @@ const customStyle = {
 
   padding: 3.2rem 0;
 
+  /* margin-bottom: 25px;  */
+
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;
@@ -43,5 +45,8 @@ img {
   position: absolute;
   cursor: pointer;
   left: 100%;
+
+  /* left: 95%;
+  top: 85%; */
 }
 </style>
