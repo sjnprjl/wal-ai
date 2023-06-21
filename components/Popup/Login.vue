@@ -41,7 +41,7 @@ const sendRequest = async (phone, password) => {
     const response = await api.post("auth/signin", data);
     const result = response.data;
     localStorage.setItem("token_ramailo", JSON.stringify(result));
-    navigateTo("/", { replace: true });
+    navigateTo("/chat-popup", { replace: true });
   } catch (err) {
     console.log("login failed", err);
   }
