@@ -12,6 +12,7 @@
 <script setup>
 const logout = () => {
   localStorage.setItem("token_ramailo", "");
+  navigateTo("/login", { replace: true });
 };
 </script>
 
@@ -35,11 +36,9 @@ p {
   font-size: 1.4rem;
   font-weight: 400;
   color: #fff;
-
   display: flex;
   justify-content: space-between;
   align-items: center;
-
   position: relative;
 }
 
