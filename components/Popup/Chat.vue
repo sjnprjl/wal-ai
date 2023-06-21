@@ -5,19 +5,19 @@
       <button type="button" class="btn btn-outline btn-class">
         + New Chat
       </button>
-      <button type="button" class="btn btn-outline">
+      <button type="button" class="btn btn-outline" @click="dateHandler">
         <img src="/images/arrow-down.png" alt="arrow down" />
       </button>
     </header>
     <div class="line"></div>
     <!-- Chat -->
     <div class="chat">
-      <!-- <div class="messages"> -->
-      <HomeMessages />
-      <!-- </div> -->
-      <!-- <div class="chat-input"> -->
-      <HomeQuestionInput />
-      <!-- </div> -->
+      <div class="msg">
+        <HomeMessages />
+      </div>
+      <div class="chat-input">
+        <HomeQuestionInput :copyrightVisible="false" color="#DADADA" />
+      </div>
     </div>
   </div>
 </template>
@@ -25,14 +25,27 @@
 <script setup>
 const questions = useStoreQuestion();
 const answers = useStoreAnswer();
+
+const date = ref(false);
+
+const dateHandler = () => {
+  date.value = !date.value;
+};
 </script>
 
 <style scoped>
 .chat {
-  /* overflow-y: scroll; */
   display: flex;
   flex-direction: column;
-  max-height: 660px;
+  max-height: 560px;
+  min-height: 560px;
+}
+.msg {
+  overflow-y: scroll;
+}
+
+.chat-input {
+  margin-top: auto;
 }
 
 .chat-container {
