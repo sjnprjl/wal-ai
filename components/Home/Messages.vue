@@ -20,7 +20,7 @@ const answers = useStoreAnswer();
 
 <style scoped>
 .question-answer-container {
-  background-color: #fff;
+  background-color: #f2f2f2;
   width: 100%;
 }
 

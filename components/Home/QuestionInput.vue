@@ -1,8 +1,18 @@
 <template>
   <div class="question-input">
     <div class="input-container">
+      <textarea
+        v-if="props.textArea"
+        class="form-control scroll"
+        id="exampleFormControlTextarea1"
+        rows="3"
+        placeholder="Ask a question..."
+        v-model="question"
+        @keyup.enter="sendQuestion"
+      ></textarea>
       <CustomInput
-        type="text"
+        v-else
+        type="textarea"
         placeholder="Ask a question..."
         :customStyle="customStyle"
         v-model="question"
@@ -36,6 +46,10 @@ const props = defineProps({
     default: true,
   },
   color: String,
+  textArea: {
+    type: Boolean,
+    default: false,
+  },
 });
 
 const style = {
@@ -63,7 +77,7 @@ const sendQuestion = () => {
     });
     question.value = "";
     answerInput.value.push({
-      content: `wait a bit.`,
+      content: `Please wait...`,
       id: Date.now(),
       role: "assistant",
     });
@@ -99,6 +113,21 @@ const linkUnderline = {
 </script>
 
 <style scoped>
+.scroll {
+  font-size: 1.6rem;
+  padding-right: 12%;
+  height: 65px;
+  background-color: #d9d9d9;
+  resize: none;
+}
+.scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.scroll::placeholder {
+  text-align: left;
+}
+
 .question-input {
   max-width: 700px;
   width: 90%;

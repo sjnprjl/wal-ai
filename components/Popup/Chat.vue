@@ -16,7 +16,11 @@
         <HomeMessages />
       </div>
       <div class="chat-input">
-        <HomeQuestionInput :copyrightVisible="false" color="#DADADA" />
+        <HomeQuestionInput
+          :copyrightVisible="false"
+          color="#DADADA"
+          :textArea="true"
+        />
       </div>
     </div>
   </div>
@@ -28,6 +32,8 @@ const answers = useStoreAnswer();
 
 const date = ref(false);
 
+provide("textarea", "textarea");
+
 const dateHandler = () => {
   date.value = !date.value;
 };
@@ -38,14 +44,24 @@ const dateHandler = () => {
   display: flex;
   flex-direction: column;
   max-height: 560px;
-  min-height: 560px;
+  min-height: 590px;
+  background-color: #2f2a2a;
 }
 .msg {
   overflow-y: scroll;
+  overflow-y: scroll;
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+  scrollbar-width: none; /* Firefox */
+}
+
+.msg::-webkit-scrollbar {
+  display: none; /* Safari and Chrome */
 }
 
 .chat-input {
   margin-top: auto;
+  background-color: #2f2a2a;
+  padding-bottom: 2.2rem;
 }
 
 .chat-container {
@@ -53,7 +69,8 @@ const dateHandler = () => {
   min-height: 66.6rem;
   max-height: 66.6rem;
   position: absolute;
-  background-color: #2f2a2a;
+  background-color: #464242;
+  /* background-color: #2f2a2a; */
 }
 
 .chat-header-button {
@@ -62,6 +79,7 @@ const dateHandler = () => {
   gap: 1.1rem;
   width: 100%;
   position: relative;
+  background-color: #2f2a2a;
 }
 
 .btn {

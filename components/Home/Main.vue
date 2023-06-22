@@ -1,20 +1,8 @@
 <template>
   <div class="main-container">
-    <!-- <div class="scroll">
-      <div
-        class="question-answer-container"
-        v-for="(question, index) in questions"
-        :key="question.id"
-      >
-        <HomeQuestion :question="question" />
-        <div style="background-color: #464242">
-          <HomeAnswer :answer="answers[index]" />
-        </div>
-      </div>
-    </div> -->
     <HomeMessages />
     <div class="question-input-container">
-      <HomeQuestionInput />
+      <HomeQuestionInput :text-area="true" />
     </div>
   </div>
 </template>
@@ -63,7 +51,7 @@ onBeforeMount(() => {
 }
 
 .question-answer-container {
-  background-color: #fff;
+  background-color: #f2f2f2;
   width: 100%;
 }
 
