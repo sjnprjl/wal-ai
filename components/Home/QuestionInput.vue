@@ -77,7 +77,7 @@ const sendQuestion = () => {
     });
     question.value = "";
     answerInput.value.push({
-      content: `wait a bit.`,
+      content: `Please wait...`,
       id: Date.now(),
       role: "assistant",
     });
@@ -125,7 +125,7 @@ const linkUnderline = {
 }
 
 .scroll::placeholder {
-  text-align: center;
+  text-align: left;
 }
 
 .question-input {
