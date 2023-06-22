@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const baseURL = "https://cfad-182-50-66-213.ngrok-free.app";
+const baseURL = process.env.baseURL;
 
 export const api = axios.create({
     baseURL,
