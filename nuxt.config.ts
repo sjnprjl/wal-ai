@@ -1,6 +1,9 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
-export default defineNuxtConfig({
+export default {
   devtools: { enabled: false },
+  publicRuntimeConfig: {
+    baseURL: process.env.BASE_URL,
+  },
   css: ["@/assets/css/global.css", "@/assets/css/variables.css"],
   app: {
     head: {
@@ -23,4 +26,4 @@ export default defineNuxtConfig({
       ],
     },
   },
-});
+};
